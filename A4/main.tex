@@ -164,7 +164,7 @@ columns=fullflexible
      \def\centbox#1{\makebox[0in]{#1}}
      \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
 \vspace{3cm}
-\title{Polynomial Curve Fitting}
+\title{Batch Gradient Descent}
 \maketitle
 \newpage
 %\tableofcontents
@@ -212,7 +212,7 @@ def create_data():
     y= y.reshape(100,1)
     return {'t':t,'y':y}
 \end{lstlisting}
-From the above code we will get t matrix of size (100,6) and y matrix of size (100,1)
+From the above code we will get t matrix of size (100,6) and y matrix of size (100,1). Here column-1 will always be the value of coefficient, which will always be 1. But to create a matrix we need to consider it as a column.
 \begin{align}
 \vec{t}= \myvec{ 1 & t_{0} & t_{0}^2 & \ldots & t_{0}^{N-1} \\
 		1 & t_{1} & t_{1}^2 & \ldots & t_{1}^{N-1} \\
@@ -221,7 +221,7 @@ From the above code we will get t matrix of size (100,6) and y matrix of size (1
 		    1 & \ldots & \ldots & \ldots & t_{N}^{N-1} }\label{eq:1}\\
 \vec{y} =\myvec{y_1 & y_2 \ldots & \ldots & \ldots & y_N}^T
 \end{align}
-\section{Polynomial Curve Fitting}
+\section{Batch Gradient Descent}
 To find a line that best resembles the underlying pattern of the training data shown in the graph. By using the least squares method followed by Stochastic gradient descent to corresponding estimated responses,The objective function to be minimized is
 \begin{align}
 Q\brak{{w}} = \sum_{i=1}^{n} Q_{i}\brak{w}
@@ -297,6 +297,9 @@ Plotting the Predicted and actual plot
 \section{Observation}
 \begin{itemize}
   \item Less oscillations and noisy steps taken towards the global minima of the loss function due to updating the parameters by computing the average of all the training samples rather than the value of a single sample.
+  \item Computes gradient using the whole Training sample.
+  \item Slow and computationally expensive algorithm.
+  \item Convergence is slow.
 \end{itemize}
 Download Python codes from 
 %
